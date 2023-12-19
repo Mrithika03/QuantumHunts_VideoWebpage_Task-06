@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Webpage</title>
+</head>
+<body>
+    <video id="myvideo" width="800" height="400" controls style="background:white">
+        <source class="active" src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+        <source src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4" />
+      </video>
+</body>
+<style>
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#video-container {
+    max-width: 800px;
+    width: 100%;
+}
+</style>
+<script>
+    var myvid = document.getElementById('myvideo');
+    myvid.addEventListener('ended', function(e) {
+    var activesource = document.querySelector("#myvideo source.active");
+    var nextsource = document.querySelector("#myvideo source.active + source") || document.querySelector("#myvideo source:first-child");
+    activesource.className = "";
+    nextsource.className = "active";
+    myvid.src = nextsource.src;
+    myvid.play();
+});
+</script>
+</html>
